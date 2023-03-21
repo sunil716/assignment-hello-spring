@@ -1,4 +1,4 @@
-name : Task-1 in assignment - Build, test, package the code and uploading artifacts to different branch
+name : Build, test, package
 
 on : 
   workflow_dispatch:
