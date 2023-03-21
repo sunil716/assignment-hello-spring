@@ -16,7 +16,7 @@ on :
       workflow2_repo_github:
         description: 'repo-name'
         required: true
-        default: ':${{github.repository}}' 
+        default: ':${{ github.repository }}' 
   push:
 
 env:
