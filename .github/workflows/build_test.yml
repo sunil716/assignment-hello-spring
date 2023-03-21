@@ -47,9 +47,5 @@ jobs :
           git config --global user.name $username
           git add .
           git commit -a -m "Adding the Artifact File(JAR File)"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          # github_token: $pat
-          github_token: ${{ secrets.PAT }}
-          branch: artifacts-store
+          git push "https://$email:$pat@github.com/sunil716/assignment-hello-spring.git" artifacts-store
+      
