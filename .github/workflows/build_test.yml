@@ -24,22 +24,24 @@ jobs :
         run : mvn test
       - name : Packaging the code
         run : mvn package
-      - name : Uploading the Artifact(JAR File)
-        uses: actions/upload-artifact@v3
+      - name: Downloading the Artifact(JAR File)
+        uses: actions/download-artifact@v3
         with:
           name: jar-file
           path: target/*.jar
+
       
   upload-artifacts:
     needs: build-test-package
     runs-on: ubuntu-latest
     steps:
-      - name: Downloading the Artifact(JAR File)
-        uses: actions/download-artifact@v3
+      - name : Uploading the Artifact(JAR File)
+        uses: actions/upload-artifact@v3
         with:
           name: jar-file
       - name: Commit files
         run: |
+          git init
           git config --global user.email $email
           git config --global user.name $username
           git commit -a -m "Adding the Artifact File(JAR File)"
