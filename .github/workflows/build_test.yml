@@ -24,19 +24,18 @@ jobs :
         run : mvn test
       - name : Packaging the code
         run : mvn package
-      - name: Downloading the Artifact(JAR File)
-        uses: actions/download-artifact@v3
+      - name : Uploading the Artifact(JAR File)
+        uses: actions/upload-artifact@v3
         with:
           name: jar-file
           path: target/*.jar
-
-      
+            
   upload-artifacts:
     needs: build-test-package
     runs-on: ubuntu-latest
     steps:
-      - name : Uploading the Artifact(JAR File)
-        uses: actions/upload-artifact@v3
+      - name: Downloading the Artifact(JAR File)
+        uses: actions/download-artifact@v3
         with:
           name: jar-file
       - name: Commit files
