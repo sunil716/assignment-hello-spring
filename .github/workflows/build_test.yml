@@ -50,14 +50,6 @@ jobs :
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: $pat
+          # github_token: $pat
+          github_token: ${{ secrets.PAT }}
           branch: artifacts-store
-      # - name:
-      #   run: |
-      #     git clone ${{ github.repositoryUrl }}
-      #     repo=$(ls)
-      #     cd $repo
-      #     git checkout -b artifacts-store
-      #     git add .
-      #     git commit -m "Uploading the Artifact"
-      #     git push 
