@@ -49,8 +49,8 @@ jobs :
           ls -al
           git branch
 
-      - name: Copy
-        run: cp 
+      # - name: Copy
+      #   run: cp 
       - name: Commit files
         # working-directory: assignment-hello-spring/
         run: |
