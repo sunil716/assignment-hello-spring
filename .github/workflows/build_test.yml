@@ -43,7 +43,6 @@ jobs :
       - name: Commit files
         working-directory: assignment-hello-spring/
         run: |
-          git init -b main
           git config --global user.email $email
           git config --global user.name $username
           git add .
