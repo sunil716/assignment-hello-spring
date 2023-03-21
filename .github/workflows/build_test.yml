@@ -2,15 +2,18 @@ name : Task-1 in assignment - Build, test, package the code and uploading artifa
 
 on : workflow_dispatch
 
+env:
+  email: sunilgajula333@gmail.com
+  username: sunil716
+  pat: ${{ secrets.PAT }}
+
 jobs :
   build-test-package : 
     runs-on : ubuntu-latest
     steps :
       - name : Getting the application code
         uses : actions/checkout@v3
-      # - name : Setup Maven Action
-      #   uses : s4u/setup-maven-action@v1.7.0
-      - name : Set up JDK 17
+      - name : Set up JDK 11
         uses : actions/setup-java@v3
         with :
           java-version : '11'
@@ -21,4 +24,36 @@ jobs :
         run : mvn test
       - name : Packaging the code
         run : mvn package
+      - name : Uploading the Artifact(JAR File)
+        uses: actions/upload-artifact@v3
+        with:
+          name: jar-file
+          path: target/*.jar
       
+  upload-artifacts:
+    needs: build-test-package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Downloading the Artifact(JAR File)
+        uses: actions/download-artifact@v3
+        with:
+          name: jar-file
+      - name: Commit files
+        run: |
+          git config --local user.email $email
+          git config --local user.name $username
+          git commit -a -m "Adding the Artifact File(JAR File)"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: $pat
+          branch: artifacts-store
+      # - name:
+      #   run: |
+      #     git clone ${{ github.repositoryUrl }}
+      #     repo=$(ls)
+      #     cd $repo
+      #     git checkout -b artifacts-store
+      #     git add .
+      #     git commit -m "Uploading the Artifact"
+      #     git push 
