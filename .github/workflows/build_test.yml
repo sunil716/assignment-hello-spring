@@ -40,8 +40,8 @@ jobs :
           name: jar-file
       - name: Commit files
         run: |
-          git config --local user.email $email
-          git config --local user.name $username
+          git config --global user.email $email
+          git config --global user.name $username
           git commit -a -m "Adding the Artifact File(JAR File)"
       - name: Push changes
         uses: ad-m/github-push-action@master
