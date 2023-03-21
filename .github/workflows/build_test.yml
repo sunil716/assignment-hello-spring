@@ -34,16 +34,26 @@ jobs :
     needs: build-test-package
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: sunil716/assignment-hello-spring
+          ref: new-branch
       - name: Downloading the Artifact(JAR File)
         uses: actions/download-artifact@v3
         with:
           name: jar-file
       - name: Listing all files
-        run: ls -al
+        run: |
+          git init 
+          ls -al
+          git branch
+
+      - name: Copy
+        run: cp 
       - name: Commit files
         # working-directory: assignment-hello-spring/
         run: |
-          git init 
           git config --global user.email $email
           git config --global user.name $username
           git add .
