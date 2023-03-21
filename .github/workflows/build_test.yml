@@ -1,6 +1,23 @@
 name : Task-1 in assignment - Build, test, package the code and uploading artifacts to different branch
 
-on : [push, workflow_dispatch]
+on : 
+  workflow_dispatch:
+    inputs:
+      workflow_02:
+        description: 'Adding Artifacts will be  triggered'
+        required: true
+        default: 'adding-artifacts'
+
+      workflow2_github_account:
+        description: 'GitHub Account Owner'
+        required: true
+        default: ':$username'
+
+      workflow2_repo_github:
+        description: 'repo-name'
+        required: true
+        default: ':${{github.repository}}' 
+  push:
 
 env:
   email: sunilgajula333@gmail.com
@@ -29,38 +46,3 @@ jobs :
         with:
           name: jar-file
           path: target/*.jar
-            
-  upload-artifacts:
-    needs: build-test-package
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          repository: sunil716/assignment-hello-spring
-          ref: artifacts-store
-      - name: Downloading the Artifact(JAR File)
-        uses: actions/download-artifact@v3
-        with:
-          name: jar-file
-      - name: Listing all files
-        run: |
-          git init 
-          ls -al
-          git branch
-
-      # - name: Copy
-      #   run: cp 
-      - name: Commit files
-        # working-directory: assignment-hello-spring/
-        run: |
-          git config --global user.email $email
-          git config --global user.name $username
-          git add .
-          git commit -a -m "Adding the Artifact File(JAR File)"
-          git branch
-          git remote -v
-
-          git push origin artifacts-store
-          #"https://$email:${{ secrets.PAT }}@github.com/sunil716/assignment-hello-spring.git" new-branch
-      

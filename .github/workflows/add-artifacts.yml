@@ -1,0 +1,33 @@
+name: adding-artifacts
+
+on: [repository_dispatch]
+
+jobs:
+  adding-artifacts:
+    needs: build-test-package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: sunil716/assignment-hello-spring
+          ref: artifacts-store
+      - name: Downloading the Artifact(JAR File)
+        uses: actions/download-artifact@v3
+        with:
+          name: jar-file
+      - name: Listing all files
+        run: |
+          git init 
+          ls -al
+          git branch
+      - name: Commit files
+        run: |
+          git config --global user.email $email
+          git config --global user.name $username
+          git add .
+          git commit -a -m "Adding the Artifact File(JAR File)"
+          git branch
+          git remote -v
+          git push origin artifacts-store
+      
