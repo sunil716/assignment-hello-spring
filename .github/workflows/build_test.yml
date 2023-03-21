@@ -23,6 +23,7 @@ env:
   email: sunilgajula333@gmail.com
   username: sunil716
   pat: ${{ secrets.PAT }}
+  GITHUB_REPOSITORY: ${{ github.repository }}
 
 jobs :
   build-test-package : 
