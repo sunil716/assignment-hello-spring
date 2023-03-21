@@ -1,6 +1,6 @@
 name : Task-1 in assignment - Build, test, package the code and uploading artifacts to different branch
 
-on : workflow_dispatch
+on : [push, workflow_dispatch]
 
 env:
   email: sunilgajula333@gmail.com
@@ -43,6 +43,7 @@ jobs :
           git init
           git config --global user.email $email
           git config --global user.name $username
+          git add .
           git commit -a -m "Adding the Artifact File(JAR File)"
       - name: Push changes
         uses: ad-m/github-push-action@master
