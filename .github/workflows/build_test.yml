@@ -39,17 +39,18 @@ jobs :
         with:
           name: jar-file
       - name: Commit files
-        run: |
-          git init
-          git config --global user.email $email
-          git config --global user.name $username
-          git add .
-          git commit -a -m "Adding the Artifact File(JAR File)"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: $pat
-          branch: artifacts-store
+        run: ls -al
+      #   run: |
+      #     git init -b main
+      #     git config --global user.email $email
+      #     git config --global user.name $username
+      #     git add .
+      #     git commit -a -m "Adding the Artifact File(JAR File)"
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: $pat
+      #     branch: artifacts-store
       # - name:
       #   run: |
       #     git clone ${{ github.repositoryUrl }}
