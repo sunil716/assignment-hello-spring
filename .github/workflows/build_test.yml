@@ -41,7 +41,7 @@ jobs :
       - name: Listing all files
         run: ls -al
       - name: Commit files
-        working-directory: assignment-hello-spring/
+        # working-directory: assignment-hello-spring/
         run: |
           git config --global user.email $email
           git config --global user.name $username
