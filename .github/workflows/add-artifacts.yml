@@ -8,6 +8,7 @@ on:
         required: true
         default: jar-file
         type: string
+        
 env:
   email: sunilgajula333@gmail.com
   username: sunil716
