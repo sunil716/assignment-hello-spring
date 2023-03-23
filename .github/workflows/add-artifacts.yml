@@ -3,9 +3,9 @@ name: adding-artifacts
 on: workflow_call
 
 env:
-  email: sunilgajula333@gmail.com
-  username: sunil716
-  pat: ${{ secrets.PAT }}
+  email: ${{ secrets.GH_EMAIL }}
+  username: ${{ secrets.GH_USERNAME }}
+  pat: ${{ secrets.GH_PAT }}
 
 jobs:
   adding-artifacts:
