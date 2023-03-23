@@ -4,7 +4,6 @@ on: workflow_call
 
 jobs:
   adding-artifacts:
-    needs: build-test-package
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

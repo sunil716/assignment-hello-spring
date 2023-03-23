@@ -32,4 +32,5 @@ jobs :
           path: target/*.jar
 
   adding-artifacts:
+    needs: build-test-package
     uses: ./.github/workflows/add-artifacts.yml
