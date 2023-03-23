@@ -28,3 +28,5 @@ jobs :
   adding-artifacts:
     needs: build-test-package
     uses: ./.github/workflows/add-artifacts.yml
+    with: 
+      artifact-name: jar-file
