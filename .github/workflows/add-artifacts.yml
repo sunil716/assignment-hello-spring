@@ -27,11 +27,10 @@ jobs:
           name: ${{ inputs.artifact-name }}
       - name: Listing all files
         run: |
-          git init 
           ls -al
-          git branch
       - name: Commit files
         run: |
+          git init 
           git config --global user.email $email
           git config --global user.name $username
           git add .
