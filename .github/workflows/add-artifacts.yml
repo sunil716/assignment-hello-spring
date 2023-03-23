@@ -8,7 +8,7 @@ on:
         required: true
         default: jar-file
         type: string
-        
+
 env:
   email: sunilgajula333@gmail.com
   username: sunil716
@@ -20,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          repository: sunil716/assignment-hello-spring
+          repository: ${{ github.repository }}
           ref: artifacts-store
       - name: Downloading the Artifact(JAR File)
         uses: actions/download-artifact@v3
