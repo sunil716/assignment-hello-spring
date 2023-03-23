@@ -1,10 +1,16 @@
+# Name of the workflow
 name : Build, test, package
 
+# This workflow can be triggered manually and also by push event
 on : [workflow_dispatch, push]
 
+# Jobs in this workflow
 jobs :
+  # Job to build, test and package the code 
   build-test-package : 
+    # Runns on latest version of ubuntu
     runs-on : ubuntu-latest
+    # Steps ivolved in this job
     steps :
       - name : Getting the application code
         uses : actions/checkout@v3
@@ -24,9 +30,12 @@ jobs :
         with:
           name: jar-file
           path: target/*.jar
-
+  # Job to add the artifact JAR file generated in the previous job
   adding-artifacts:
+    # Requires teh build-test-package job 
     needs: build-test-package
+    # Calling the reusable workflow add-artifacts.yml to upload the artifact into artifact-store branch
     uses: ./.github/workflows/add-artifacts.yml
+    # Providing the required inputs
     with: 
       artifact-name: jar-file

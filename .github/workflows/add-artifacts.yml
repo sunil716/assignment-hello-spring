@@ -1,7 +1,10 @@
+# Name of the workflow
 name: adding-artifacts
 
+# This is a reusable workflow which can be triggered by other workflows
 on: 
   workflow_call:
+    # Inputs that needs to be passed while calling the workflow
     inputs:
       artifact-name:
         description: Storing the artifact name
@@ -9,15 +12,20 @@ on:
         default: jar-file
         type: string
 
+# Environment variables
 env:
   email: sunilgajula333@gmail.com
   username: sunil716
 
+# Jobs in this workflow
 jobs:
+  # A job to upload the artifact into artifact-store branch
   adding-artifacts:
+    # Runs on latest version of ubuntu
     runs-on: ubuntu-latest
+    #  Steps involved in the job
     steps:
-      - name: Checkout
+      - name: Checking out the artifacts-store branch in the current repository
         uses: actions/checkout@v3
         with:
           repository: ${{ github.repository }}
