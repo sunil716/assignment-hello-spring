@@ -9,8 +9,8 @@ on:
         default: jar-file
         type: string
 env:
-  email: ${{ secrets.GH_EMAIL }}
-  username: ${{ secrets.GH_USERNAME }}
+  email: sunilgajula333@gmail.com
+  username: sunil716
 
 jobs:
   adding-artifacts:
