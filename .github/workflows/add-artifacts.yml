@@ -3,7 +3,7 @@ name: adding-artifacts
 on: 
   workflow_call:
     inputs:
-      artifact_name:
+      artifact-name:
         description: Storing the artifact name
         required: true
         default: jar-file
@@ -21,7 +21,7 @@ jobs:
       - name: Downloading the Artifact(JAR File)
         uses: actions/download-artifact@v3
         with:
-          name: ${{ inputs.artifact_name }}
+          name: ${{ inputs.artifact-name }}
       - name: Listing all files
         run: |
           git init 
