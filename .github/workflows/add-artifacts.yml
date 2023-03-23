@@ -9,11 +9,6 @@ on:
         default: jar-file
         type: string
 
-env:
-  email: ${{ secrets.GH_EMAIL }}
-  username: ${{ secrets.GH_USERNAME }}
-  pat: ${{ secrets.GH_PAT }}
-
 jobs:
   adding-artifacts:
     runs-on: ubuntu-latest
@@ -34,8 +29,8 @@ jobs:
           git branch
       - name: Commit files
         run: |
-          git config --global user.email $email
-          git config --global user.name $username
+          git config --global user.email ${{ secrets.GH_EMAIL }}
+          git config --global user.name ${{ secrets.GH_USERNAME }}
           git add .
           git commit -a -m "Adding the Artifact File(JAR File)"
           git branch
