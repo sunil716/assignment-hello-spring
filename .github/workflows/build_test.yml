@@ -1,23 +1,6 @@
 name : Build, test, package
 
-on : 
-  workflow_dispatch:
-    inputs:
-      workflow_02:
-        description: 'Adding Artifacts will be  triggered'
-        required: true
-        default: 'adding-artifacts'
-
-      workflow2_github_account:
-        description: 'GitHub Account Owner'
-        required: true
-        default: ':$username'
-
-      workflow2_repo_github:
-        description: 'repo-name'
-        required: true
-        default: ':assignment-hello-spring' 
-  push:
+on : [workflow_dispatch, push]
 
 env:
   email: sunilgajula333@gmail.com
@@ -47,9 +30,6 @@ jobs :
         with:
           name: jar-file
           path: target/*.jar
-      - name: Test
-        run: |
-          curl -X POST https://api.github.com/repos/:userName/:repoName/dispatches \
-          -H 'Accept: application/vnd.github.everest-preview+json' \
-          -u ${{ secrets.PAT }} \
-          --data '{"event_type": "Trigger Workflow", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
+
+  adding-artifacts:
+    uses: ./.github/workflows/add-artifacts.yml
