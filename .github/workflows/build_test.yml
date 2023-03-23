@@ -2,12 +2,6 @@ name : Build, test, package
 
 on : [workflow_dispatch, push]
 
-env:
-  email: sunilgajula333@gmail.com
-  username: sunil716
-  pat: ${{ secrets.PAT }}
-  GITHUB_REPOSITORY: ${{ github.repository }}
-
 jobs :
   build-test-package : 
     runs-on : ubuntu-latest
