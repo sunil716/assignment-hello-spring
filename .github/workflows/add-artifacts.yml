@@ -1,6 +1,13 @@
 name: adding-artifacts
 
-on: workflow_call
+on: 
+  workflow_call:
+    inputs:
+      artifact_name:
+        description: Storing the artifact name
+        required: true
+        default: jar-file
+        type: string
 
 env:
   email: ${{ secrets.GH_EMAIL }}
@@ -19,7 +26,7 @@ jobs:
       - name: Downloading the Artifact(JAR File)
         uses: actions/download-artifact@v3
         with:
-          name: jar-file
+          name: ${{ inputs.artifact_name }}
       - name: Listing all files
         run: |
           git init 
